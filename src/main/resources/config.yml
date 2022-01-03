@@ -1,2 +1,5 @@
 # Time that a user is blocked from playing
 restricted_hours: 48 
+
+# Boss enhancement percentage (0.0 - 1.0)
+boss_enhancement: 0.1

@@ -27,6 +27,8 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.dhohmann.hardcore.entity.Enhancer;
+
 public class HardcorePlugin extends JavaPlugin implements Listener {
 
 	private Map<Object, Date> reviveDates = new HashMap<>();
@@ -51,6 +53,7 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 		});
 
 		Bukkit.getPluginManager().registerEvents(this, this);
+		Bukkit.getPluginManager().registerEvents(new Enhancer(), this);
 
 		updateTask = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, revive, 0, 1200);
 	}

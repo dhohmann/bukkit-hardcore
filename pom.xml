@@ -4,8 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.dhohmann</groupId>
 	<artifactId>hardcore</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
+	
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>plugin.yml</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
