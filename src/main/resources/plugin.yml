@@ -1,3 +1,10 @@
 name: HardcorePlugin
 main: io.github.dhohmann.hardcore.HardcorePlugin
-version: 0.1.0
+version: ${project.version}
+api-version: 1.17
+
+commands:
+  forcegamemode:
+    description: Set yourself on fire.
+    permission: hardcore.gamemode
+    usage: forcegamemode <gamemode> <player>

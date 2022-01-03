@@ -15,6 +15,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,6 +39,7 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 		saveDefaultConfig();
 
 		Bukkit.getWorlds().forEach((world) -> {
+			world.setSpawnFlags(true, world.getAllowAnimals());
 			world.setDifficulty(Difficulty.HARD);
 			world.setHardcore(true);
 		});
@@ -48,7 +51,7 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 		});
 
 		Bukkit.getPluginManager().registerEvents(this, this);
-		
+
 		updateTask = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, revive, 0, 1200);
 	}
 
@@ -68,7 +71,6 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 		Bukkit.getScheduler().cancelTask(updateTask);
 	}
 
-
 	/**
 	 * Event handler for a dying player. Adds a player to the handler logic after
 	 * the death.
@@ -79,8 +81,6 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 	public void onPlayerDeath(PlayerDeathEvent e) {
 		addPlayer(e.getEntity());
 	}
-	
-	
 
 	/**
 	 * Event handler for game mode changes. It cancels game mode changes if the
@@ -93,7 +93,7 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 		Player p = e.getPlayer();
 		Object key = Bukkit.getOnlineMode() ? p.getUniqueId() : p.getName();
 		if (!automatedGMChanges.contains(key)) {
-			getLogger().info("Gamemode change for "+p.getName()+" canceled");
+			getLogger().info("Gamemode change for " + p.getName() + " canceled");
 			e.setCancelled(true);
 		} else {
 			automatedGMChanges.remove(key);
@@ -165,6 +165,9 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 				String message = String.format("You will be revived in %d minutes.", minute);
 				reviveDates.forEach((key, date) -> {
 					Player p = Bukkit.getOnlineMode() ? Bukkit.getPlayer((UUID) key) : Bukkit.getPlayer((String) key);
+					if (p == null) {
+						return;
+					}
 					if (future.getTime().before(date)) {
 						return;
 					}
@@ -200,7 +203,32 @@ public class HardcorePlugin extends JavaPlugin implements Listener {
 		p.teleport(location, TeleportCause.PLUGIN);
 		p.setGameMode(GameMode.SURVIVAL);
 		p.sendMessage("You were revived.");
-		getLogger().info("Player "+p.getName()+" revived");
+		getLogger().info("Player " + p.getName() + " revived");
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if ("forcegamemode".equals(label)) {
+			if (args.length != 2) {
+				sender.sendMessage("You are missing some arguments.");
+				return false;
+			}
+			try {
+				GameMode gm = GameMode.valueOf(args[0].toUpperCase());
+				Player p = Bukkit.getPlayer(args[1]);
+				if(p == null) {
+					sender.sendMessage("Player "+args[1] + " not found.");
+					return true;
+				}
+				Object key = Bukkit.getOnlineMode() ? p.getUniqueId() : p.getName();
+				automatedGMChanges.add(key);
+				p.setGameMode(gm);
+				return true;
+			} catch (IllegalArgumentException e) {
+				sender.sendMessage("Game " + args[0] + " mode not found");
+			}
+		}
+		return false;
 	}
 
 }
