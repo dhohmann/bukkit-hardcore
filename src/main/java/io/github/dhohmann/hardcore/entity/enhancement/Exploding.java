@@ -5,8 +5,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.dhohmann.hardcore.HardcorePlugin;
-import io.github.dhohmann.hardcore.Utils;
 import io.github.dhohmann.hardcore.enhancement.DeathEffect;
+import io.github.dhohmann.hardcore.enhancement.Utils;
 
 public class Exploding implements DeathEffect {
 

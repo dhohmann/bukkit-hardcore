@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import io.github.dhohmann.hardcore.entity.EnhancedEffects;
+import io.github.dhohmann.hardcore.enhancement.EnhancedEffects;
 
 public class EntityEnhanceEvent extends Event implements Cancellable {
 

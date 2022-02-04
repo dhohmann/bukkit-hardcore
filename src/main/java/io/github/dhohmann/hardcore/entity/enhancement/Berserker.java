@@ -2,8 +2,8 @@ package io.github.dhohmann.hardcore.entity.enhancement;
 
 import org.bukkit.entity.LivingEntity;
 
-import io.github.dhohmann.hardcore.Utils;
 import io.github.dhohmann.hardcore.enhancement.OnHitEffect;
+import io.github.dhohmann.hardcore.enhancement.Utils;
 
 public class Berserker implements OnHitEffect {
 

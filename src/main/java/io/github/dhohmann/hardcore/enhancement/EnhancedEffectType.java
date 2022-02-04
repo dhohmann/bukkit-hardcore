@@ -1,9 +1,9 @@
-package io.github.dhohmann.hardcore.entity;
+package io.github.dhohmann.hardcore.enhancement;
 
-import io.github.dhohmann.hardcore.enhancement.Effect;
 import io.github.dhohmann.hardcore.entity.enhancement.Berserker;
 import io.github.dhohmann.hardcore.entity.enhancement.Exploding;
 import io.github.dhohmann.hardcore.entity.enhancement.Glowing;
+import io.github.dhohmann.hardcore.entity.enhancement.Wise;
 
 public enum EnhancedEffectType {
 
@@ -24,7 +24,12 @@ public enum EnhancedEffectType {
 	 * 
 	 * @see Berserker#DAMAGE_MOFIDIER
 	 */
-	BERSERKER(Berserker.class);
+	BERSERKER(Berserker.class),
+
+	/**
+	 * When an entity dies, the killer gains a level.
+	 */
+	WISE(Wise.class);
 
 	private Class<? extends Effect> effect;
 
@@ -32,7 +37,7 @@ public enum EnhancedEffectType {
 		this.effect = handler;
 	}
 
-	public Effect getHandler() {
+	Effect getHandler() {
 		try {
 			return effect.getConstructor().newInstance();
 		} catch (Throwable e) {

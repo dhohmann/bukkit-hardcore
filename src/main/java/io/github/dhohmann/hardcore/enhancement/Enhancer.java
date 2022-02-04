@@ -1,4 +1,4 @@
-package io.github.dhohmann.hardcore.entity;
+package io.github.dhohmann.hardcore.enhancement;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,7 +16,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.dhohmann.hardcore.HardcorePlugin;
-import io.github.dhohmann.hardcore.Utils;
 import io.github.dhohmann.hardcore.entity.event.EntityEnhanceEvent;
 
 public class Enhancer implements Listener {
