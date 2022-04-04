@@ -11,14 +11,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.github.dhohmann.hardcore.HardcorePlugin;
 import io.github.dhohmann.hardcore.Utils;
 import io.github.dhohmann.hardcore.effects.entity.DeathEffect;
-import io.github.dhohmann.hardcore.effects.entity.OnHitEffect;
 import io.github.dhohmann.hardcore.effects.entity.SpawnEffect;
+import io.github.dhohmann.hardcore.effects.entity.ThornEffect;
 
 /**
  * Applies a freezing effect for {@value #FREEZING_DURATION} seconds to all
  * players in close range when it gets hit.
  */
-public class Freezing implements SpawnEffect, DeathEffect, OnHitEffect {
+public class Freezing implements SpawnEffect, DeathEffect, ThornEffect {
 
 	private static final HardcorePlugin PLUGIN = JavaPlugin.getPlugin(HardcorePlugin.class);
 	private static final int FREEZING_DURATION = 3;
@@ -36,20 +36,16 @@ public class Freezing implements SpawnEffect, DeathEffect, OnHitEffect {
 	 */
 	@Override
 	public void onSpawn(CreatureSpawnEvent event) {
-		this.entity = event.getEntity();
 		task = Bukkit.getScheduler().scheduleSyncRepeatingTask(PLUGIN, () -> {
-			this.entity.getWorld().playEffect(this.entity.getLocation(), Effect.SMOKE, 1, 2);
+			event.getEntity().getWorld().playEffect(this.entity.getLocation(), Effect.SMOKE, 1, 2);
 		}, 0, 3 * TICKS_PER_SECOND);
 
 	}
 
 	@Override
-	public void onHit(EntityDamageByEntityEvent event) {
-		if (entity == null) {
-			return;
-		}
+	public void onReceiveHit(EntityDamageByEntityEvent event) {
 
-		entity.getNearbyEntities(CLOSE_RANGE_DISTANCE, CLOSE_RANGE_DISTANCE, CLOSE_RANGE_DISTANCE).stream()
+		event.getEntity().getNearbyEntities(CLOSE_RANGE_DISTANCE, CLOSE_RANGE_DISTANCE, CLOSE_RANGE_DISTANCE).stream()
 				.filter((e) -> e instanceof LivingEntity).forEach(e -> {
 					e.setFreezeTicks(FREEZING_DURATION * TICKS_PER_SECOND);
 				});
