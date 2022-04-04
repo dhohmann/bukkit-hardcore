@@ -1,6 +1,7 @@
 # Hardcore Plugin
 
-This plugin applies hard mode to the server while providing the possibility to remain playing on the server.
+This plugin applies hard mode to the server while providing the possibility to remain playing on the server. 
+It also enhances the spawning creatures to have various effects.
 
 ## Requirements
 Bukkit version: 1.8+
@@ -24,6 +25,5 @@ There are four types of enhancements.
 - Enhancements that apply when a **creature is hit**. (Thorn effect) These enhancements may modify the damage the enhanced entity receives or may apply effects to the damager.
 - Enhancements that apply when a **creature hits another entity**. (On-hit effect) These enhancements may modify the damage the entity does or apply additional effects to its hits.
 - Enhancements that apply when a **creature dies**. These enhancements result in events during or after the death of the creature.
-
 
 
