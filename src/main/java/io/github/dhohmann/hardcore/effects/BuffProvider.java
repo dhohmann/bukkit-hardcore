@@ -1,4 +1,4 @@
-package io.github.dhohmann.hardcore.enhancement;
+package io.github.dhohmann.hardcore.effects;
 
 import org.bukkit.entity.EntityType;
 

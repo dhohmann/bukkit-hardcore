@@ -1,4 +1,4 @@
-package io.github.dhohmann.hardcore.enhancement;
+package io.github.dhohmann.hardcore;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -6,15 +6,17 @@ import java.util.ResourceBundle;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 
-import io.github.dhohmann.hardcore.VersionInfo;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_10;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_11;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_12;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_13;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_14;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_16;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_8;
-import io.github.dhohmann.hardcore.enhancement.providers.BuffProvider1_9;
+import io.github.dhohmann.hardcore.effects.BuffProvider;
+import io.github.dhohmann.hardcore.effects.EnhancedEffectType;
+import io.github.dhohmann.hardcore.effects.EnhancedEffects;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_10;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_11;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_12;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_13;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_14;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_16;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_8;
+import io.github.dhohmann.hardcore.effects.providers.BuffProvider1_9;
 import io.github.dhohmann.hardcore.world.WorldPreparator;
 import io.github.dhohmann.hardcore.world.WorldPreparator1_15;
 import io.github.dhohmann.hardcore.world.WorldPreparator1_8;

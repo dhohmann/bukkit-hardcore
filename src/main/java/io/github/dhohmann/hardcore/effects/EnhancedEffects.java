@@ -1,8 +1,12 @@
-package io.github.dhohmann.hardcore.enhancement;
+package io.github.dhohmann.hardcore.effects;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import io.github.dhohmann.hardcore.effects.entity.DeathEffect;
+import io.github.dhohmann.hardcore.effects.entity.OnHitEffect;
+import io.github.dhohmann.hardcore.effects.entity.SpawnEffect;
 
 public class EnhancedEffects {
 	private Collection<Effect> effects;

@@ -1,4 +1,4 @@
-package io.github.dhohmann.hardcore.enhancement.providers;
+package io.github.dhohmann.hardcore.effects.providers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,10 +9,10 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.dhohmann.hardcore.HardcorePlugin;
-import io.github.dhohmann.hardcore.enhancement.BuffProvider;
-import io.github.dhohmann.hardcore.enhancement.EnhancedEffectType;
-import io.github.dhohmann.hardcore.enhancement.EnhancedEffects;
-import io.github.dhohmann.hardcore.enhancement.Utils;
+import io.github.dhohmann.hardcore.Utils;
+import io.github.dhohmann.hardcore.effects.BuffProvider;
+import io.github.dhohmann.hardcore.effects.EnhancedEffectType;
+import io.github.dhohmann.hardcore.effects.EnhancedEffects;
 
 public class BuffProvider1_8 implements BuffProvider {
 

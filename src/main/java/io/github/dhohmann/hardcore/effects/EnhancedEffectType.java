@@ -1,9 +1,9 @@
-package io.github.dhohmann.hardcore.enhancement;
+package io.github.dhohmann.hardcore.effects;
 
-import io.github.dhohmann.hardcore.entity.enhancement.Berserker;
-import io.github.dhohmann.hardcore.entity.enhancement.Exploding;
-import io.github.dhohmann.hardcore.entity.enhancement.Glowing;
-import io.github.dhohmann.hardcore.entity.enhancement.Wise;
+import io.github.dhohmann.hardcore.entity.effects.Berserker;
+import io.github.dhohmann.hardcore.entity.effects.Exploding;
+import io.github.dhohmann.hardcore.entity.effects.Glowing;
+import io.github.dhohmann.hardcore.entity.effects.Wise;
 
 public enum EnhancedEffectType {
 

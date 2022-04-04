@@ -1,4 +1,4 @@
-package io.github.dhohmann.hardcore.enhancement;
+package io.github.dhohmann.hardcore.effects;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,6 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.dhohmann.hardcore.HardcorePlugin;
+import io.github.dhohmann.hardcore.Utils;
 import io.github.dhohmann.hardcore.entity.event.EntityEnhanceEvent;
 
 public class Enhancer implements Listener {
@@ -47,7 +48,7 @@ public class Enhancer implements Listener {
 		entity.setCustomNameVisible(true);
 
 		effects.getSpawnEffects().forEach((e) -> {
-			e.applyOn(entity);
+			e.onSpawn(event.getSpawnEvent());
 		});
 
 		plugin.getLogger().info("Enhanced entity " + entity.getName());
@@ -61,13 +62,14 @@ public class Enhancer implements Listener {
 		}
 
 		EnhancedEffects effects = Utils.getEnhancements(event.getEntity());
-		Bukkit.getPluginManager().callEvent(new EntityEnhanceEvent(event.getEntity(), effects));
+		Bukkit.getPluginManager().callEvent(new EntityEnhanceEvent(event, effects));
 	}
 
 	/**
-	 * Applies on hit effects when the player is damaged.
+	 * Applies on hit effects when a player is damaged. If the damager is not
+	 * enhanced, this method does nothing.
 	 * 
-	 * @param event
+	 * @param event Damage event
 	 */
 	@EventHandler
 	public void onEntityHitsPlayer(EntityDamageByEntityEvent event) {
@@ -77,14 +79,9 @@ public class Enhancer implements Listener {
 		if (!(event.getDamager() instanceof LivingEntity)) {
 			return;
 		}
-		EnhancedEffects effects = entities.get(event.getDamager());
-		effects.getOnHitEffects().forEach(e -> {
-			LivingEntity entity = (LivingEntity) event.getDamager();
-			double damage = event.getDamage();
-			damage = e.applyHitEffect(entity, damage);
-			event.setDamage(damage);
-		});
 
+		EnhancedEffects effects = entities.get(event.getDamager());
+		effects.getOnHitEffects().forEach(e -> e.onHit(event));
 	}
 
 	@EventHandler
@@ -95,9 +92,7 @@ public class Enhancer implements Listener {
 		}
 
 		EnhancedEffects effects = entities.get(entity);
-		effects.getDeathEffects().forEach(e -> {
-			e.execute(entity, entity.getKiller());
-		});
+		effects.getDeathEffects().forEach(e -> e.onDeath(event));
 		entities.remove(entity);
 	}
 

@@ -1,8 +1,8 @@
-package io.github.dhohmann.hardcore.enhancement.providers;
+package io.github.dhohmann.hardcore.effects.providers;
 
-import io.github.dhohmann.hardcore.enhancement.EnhancedEffectType;
-import io.github.dhohmann.hardcore.enhancement.EnhancedEffects;
-import io.github.dhohmann.hardcore.enhancement.Utils;
+import io.github.dhohmann.hardcore.Utils;
+import io.github.dhohmann.hardcore.effects.EnhancedEffectType;
+import io.github.dhohmann.hardcore.effects.EnhancedEffects;
 
 public class BuffProvider1_14 extends BuffProvider1_13 {
 

@@ -10,8 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.dhohmann.hardcore.command.ForceGamemode;
-import io.github.dhohmann.hardcore.enhancement.Enhancer;
-import io.github.dhohmann.hardcore.enhancement.Utils;
+import io.github.dhohmann.hardcore.effects.Enhancer;
 import io.github.dhohmann.hardcore.player.PlayerManager;
 
 public class HardcorePlugin extends JavaPlugin implements Listener {

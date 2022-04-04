@@ -1,4 +1,4 @@
-package io.github.dhohmann.hardcore.enhancement;
+package io.github.dhohmann.hardcore.effects;
 
 public interface Effect {
 
@@ -8,4 +8,6 @@ public interface Effect {
 	 * @return 
 	 */
 	public String getModifier();
+	
+	static final int TICKS_PER_SECOND = 20;
 }

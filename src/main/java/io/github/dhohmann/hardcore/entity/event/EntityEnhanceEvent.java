@@ -4,18 +4,19 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
-import io.github.dhohmann.hardcore.enhancement.EnhancedEffects;
+import io.github.dhohmann.hardcore.effects.EnhancedEffects;
 
 public class EntityEnhanceEvent extends Event implements Cancellable {
 
 	private static final HandlerList handlers = new HandlerList();
 	private EnhancedEffects effects;
 	private boolean canceled;
-	private LivingEntity entity;
+	private CreatureSpawnEvent event;
 
-	public EntityEnhanceEvent(LivingEntity what, EnhancedEffects effects) {
-		this.entity = what;
+	public EntityEnhanceEvent(CreatureSpawnEvent event, EnhancedEffects effects) {
+		this.event = event;
 		this.effects = effects;
 	}
 
@@ -43,7 +44,11 @@ public class EntityEnhanceEvent extends Event implements Cancellable {
 	}
 
 	public LivingEntity getEntity() {
-		return entity;
+		return event.getEntity();
+	}
+
+	public CreatureSpawnEvent getSpawnEvent() {
+		return event;
 	}
 
 }
