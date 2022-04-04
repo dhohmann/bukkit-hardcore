@@ -7,6 +7,7 @@ import java.util.List;
 import io.github.dhohmann.hardcore.effects.entity.DeathEffect;
 import io.github.dhohmann.hardcore.effects.entity.OnHitEffect;
 import io.github.dhohmann.hardcore.effects.entity.SpawnEffect;
+import io.github.dhohmann.hardcore.effects.entity.ThornEffect;
 
 public class EnhancedEffects {
 	private Collection<Effect> effects;
@@ -43,6 +44,10 @@ public class EnhancedEffects {
 
 	public Collection<DeathEffect> getDeathEffects() {
 		return getEffects(DeathEffect.class);
+	}
+
+	public Collection<ThornEffect> getThornEffects() {
+		return getEffects(ThornEffect.class);
 	}
 
 }

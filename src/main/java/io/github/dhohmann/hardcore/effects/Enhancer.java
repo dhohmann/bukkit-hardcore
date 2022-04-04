@@ -66,8 +66,11 @@ public class Enhancer implements Listener {
 	}
 
 	/**
-	 * Applies on hit effects when a player is damaged. If the damager is not
-	 * enhanced, this method does nothing.
+	 * Applies on hit and thorn effects when an entity is damaged.
+	 * 
+	 * If the damager is not enhanced, this method does not apply on hit effects.
+	 * 
+	 * If the entity is not enhanced, this method does not apply thorn effects.
 	 * 
 	 * @param event Damage event
 	 */
@@ -80,8 +83,11 @@ public class Enhancer implements Listener {
 			return;
 		}
 
-		EnhancedEffects effects = entities.get(event.getDamager());
-		effects.getOnHitEffects().forEach(e -> e.onHit(event));
+		EnhancedEffects damagerEffects = entities.get(event.getDamager());
+		damagerEffects.getOnHitEffects().forEach(e -> e.onHit(event));
+
+		EnhancedEffects entityEffects = entities.get(event.getEntity());
+		entityEffects.getThornEffects().forEach(e -> e.onReceiveHit(event));
 	}
 
 	@EventHandler
